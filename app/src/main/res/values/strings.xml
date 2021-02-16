@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FinnishParliamentMembers</string>
+    <string name="rand_parliament_member">Random member</string>
+    <string name="name_placeholder">Mikko Mallikas</string>
+    <string name="firstname_placeholder" >Mikko</string>
+    <string name="lastname_placeholder">Mallikas</string>
+    <string name="puolue_placeholder">Puolue</string>
+    <string name="picture_description">picture</string>
+    <string name="likebutton_desc">LikeButton</string>
+    <string name="dislikebutton_desc">Dislike</string>
+    <string name="likeDislike_placeholder">Like/Dislike ratio</string>
+</resources>
