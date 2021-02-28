@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.example.oop_projekti1.Parliament
-import com.example.oop_projekti1.ParliamentMembersData
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberBinding
 
 class MemberFragment : Fragment() {
@@ -19,8 +17,7 @@ class MemberFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentMemberBinding>(inflater,
-            R.layout.fragment_member,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member,container,false)
 
         parliament = Parliament(ParliamentMembersData.members)
 

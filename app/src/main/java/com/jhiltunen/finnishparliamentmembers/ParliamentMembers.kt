@@ -1,6 +1,4 @@
-package com.example.oop_projekti1
-
-import android.os.Build
+package com.jhiltunen.finnishparliamentmembers
 
 data class ParliamentMember(
     val hetekaId: Int,
