@@ -1,10 +1,12 @@
-package com.jhiltunen.finnishparliamentmembers
+package com.jhiltunen.finnishparliamentmembers.logic.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jhiltunen.finnishparliamentmembers.ParliamentMember
+import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
 import kotlinx.coroutines.launch
 
 class ParliamentMemberViewModel: ViewModel() {
@@ -16,7 +18,7 @@ class ParliamentMemberViewModel: ViewModel() {
         getParliamentMembers()
     }
 
-    fun getParliamentMembers() {
+    private fun getParliamentMembers() {
         viewModelScope.launch {
             try {
                 _parliamentMembers.value = ParliamentMemberApi.retrofitService.getParliamentMembers()

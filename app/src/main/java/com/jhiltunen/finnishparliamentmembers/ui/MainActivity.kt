@@ -1,4 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers
+package com.jhiltunen.finnishparliamentmembers.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberViewModel
+import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.parliamentMembers.observe(this) {
-            //Log.d("PARLIAMENT", it[0].lastname)
+            Log.d("PARLIAMENT", it[0].lastname)
         }
 
     }

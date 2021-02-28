@@ -1,4 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers
+package com.jhiltunen.finnishparliamentmembers.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.jhiltunen.finnishparliamentmembers.Parliament
+import com.jhiltunen.finnishparliamentmembers.ParliamentMembersData
+import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberBinding
 
 class MemberFragment : Fragment() {

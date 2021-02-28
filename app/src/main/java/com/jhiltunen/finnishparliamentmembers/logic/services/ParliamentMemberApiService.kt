@@ -1,5 +1,6 @@
-package com.jhiltunen.finnishparliamentmembers
+package com.jhiltunen.finnishparliamentmembers.logic.services
 
+import com.jhiltunen.finnishparliamentmembers.ParliamentMember
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -23,7 +24,7 @@ interface ParliamentMemberApiService {
 }
 
 object ParliamentMemberApi {
-    val retrofitService:ParliamentMemberApiService by lazy {
+    val retrofitService: ParliamentMemberApiService by lazy {
         retrofit.create(ParliamentMemberApiService::class.java)
     }
 }
