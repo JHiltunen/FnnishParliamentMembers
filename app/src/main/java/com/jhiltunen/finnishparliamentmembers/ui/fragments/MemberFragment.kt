@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.jhiltunen.finnishparliamentmembers.Parliament
-import com.jhiltunen.finnishparliamentmembers.ParliamentMembersData
+import com.jhiltunen.finnishparliamentmembers.logic.models.Parliament
+import com.jhiltunen.finnishparliamentmembers.logic.models.ParliamentMembersData
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberBinding
 

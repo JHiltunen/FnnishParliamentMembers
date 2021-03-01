@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jhiltunen.finnishparliamentmembers.ParliamentMember
+import com.jhiltunen.finnishparliamentmembers.logic.models.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
 import kotlinx.coroutines.launch
 
@@ -14,9 +14,9 @@ class ParliamentMemberViewModel: ViewModel() {
     val parliamentMembers:LiveData<List<ParliamentMember>>
         get() =_parliamentMembers
 
-    init {
+    /*init {
         getParliamentMembers()
-    }
+    }*/
 
     private fun getParliamentMembers() {
         viewModelScope.launch {

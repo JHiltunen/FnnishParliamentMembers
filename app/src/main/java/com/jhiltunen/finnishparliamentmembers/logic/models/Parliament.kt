@@ -1,14 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers
-
-data class ParliamentMember(
-    val hetekaId: Int,
-    val seatNumber: Int = 0,
-    val lastname: String,
-    val firstname: String,
-    val party: String,
-    val minister: Boolean = false,
-    val pictureUrl: String = ""
-)
+package com.jhiltunen.finnishparliamentmembers.logic.models
 
 class Parliament(val members: List<ParliamentMember>) {
     // return all parties represented in parliament sorted by their name
