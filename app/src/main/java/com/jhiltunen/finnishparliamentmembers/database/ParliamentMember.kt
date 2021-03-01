@@ -1,4 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers.logic.models
+package com.jhiltunen.finnishparliamentmembers.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

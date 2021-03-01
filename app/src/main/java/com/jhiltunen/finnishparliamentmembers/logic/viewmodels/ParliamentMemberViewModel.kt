@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jhiltunen.finnishparliamentmembers.logic.models.ParliamentMember
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
 import kotlinx.coroutines.launch
 

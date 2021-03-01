@@ -1,5 +1,7 @@
 package com.jhiltunen.finnishparliamentmembers.logic.models
 
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
+
 class Parliament(val members: List<ParliamentMember>) {
     // return all parties represented in parliament sorted by their name
     fun parties(): List<String> {

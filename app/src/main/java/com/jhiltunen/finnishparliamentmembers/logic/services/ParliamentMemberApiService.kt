@@ -1,6 +1,6 @@
 package com.jhiltunen.finnishparliamentmembers.logic.services
 
-import com.jhiltunen.finnishparliamentmembers.logic.models.ParliamentMember
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
