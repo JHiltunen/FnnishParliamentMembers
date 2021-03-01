@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ParliamentMember::class], version = 1, exportSchema = false)
 abstract class ParliamentDatabase : RoomDatabase() {
-    abstract fun parliamentDatabaseDao() : ParliamentDatabaseDao
+    abstract fun parliamentDao() : ParliamentDao
     companion object {
         @Volatile
         private var INSTANCE: ParliamentDatabase? = null

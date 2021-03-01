@@ -2,23 +2,22 @@ package com.jhiltunen.finnishparliamentmembers.logic
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabaseDao
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 
-class ParliamentRepository(private val parliamentDatabaseDao: ParliamentDatabaseDao) {
-    val parliamentData: LiveData<List<ParliamentMember>> = parliamentDatabaseDao.getAllMembers()
+class ParliamentRepository(private val parliamentDao: ParliamentDao) {
+    val parliamentData: LiveData<List<ParliamentMember>> = parliamentDao.getAllMembers()
 
     suspend fun insertParliamentMember(parliamentMember: ParliamentMember) {
         Log.d("REPO", parliamentMember.toString())
-        parliamentDatabaseDao.insert(parliamentMember)
+        parliamentDao.insert(parliamentMember)
     }
 
     suspend fun updateParliamentMember(parliamentMember: ParliamentMember) {
-        parliamentDatabaseDao.insert(parliamentMember)
+        parliamentDao.insert(parliamentMember)
     }
 
     fun getAllMembers():LiveData<List<ParliamentMember>> {
-        return parliamentDatabaseDao.getAllMembers()
+        return parliamentDao.getAllMembers()
     }
 }

@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabaseDao
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
@@ -15,8 +15,8 @@ class ParliamentMemberViewModel(application: Application): AndroidViewModel(appl
     val parliamentMembers:LiveData<List<ParliamentMember>>
         get() =_parliamentMembers
 
-    private val parliamentDatabaseDao: ParliamentDatabaseDao = ParliamentDatabase.getInstance(application).parliamentDatabaseDao()
-    private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDatabaseDao)
+    private val parliamentDao: ParliamentDao = ParliamentDatabase.getInstance(application).parliamentDao()
+    private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDao)
 
     init {
         getParliamentMembersFromApi()
