@@ -12,8 +12,8 @@ import com.jhiltunen.finnishparliamentmembers.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var viewModel: ParliamentMemberViewModel
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: ParliamentMemberViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
