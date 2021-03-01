@@ -1,24 +1,28 @@
 package com.jhiltunen.finnishparliamentmembers.logic.viewmodels
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
+import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabaseDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
+import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
 import kotlinx.coroutines.launch
 
-class ParliamentMemberViewModel: ViewModel() {
+class ParliamentMemberViewModel(application: Application): AndroidViewModel(application) {
     private val _parliamentMembers = MutableLiveData<List<ParliamentMember>>()
     val parliamentMembers:LiveData<List<ParliamentMember>>
         get() =_parliamentMembers
 
-    /*init {
-        getParliamentMembers()
-    }*/
+    private val parliamentDatabaseDao: ParliamentDatabaseDao = ParliamentDatabase.getInstance(application).parliamentDatabaseDao()
+    private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDatabaseDao)
 
-    private fun getParliamentMembers() {
+    init {
+        getParliamentMembersFromApi()
+    }
+
+    private fun getParliamentMembersFromApi() {
         viewModelScope.launch {
             try {
                 _parliamentMembers.value = ParliamentMemberApi.retrofitService.getParliamentMembers()
@@ -27,6 +31,11 @@ class ParliamentMemberViewModel: ViewModel() {
                 _parliamentMembers.value = ArrayList()
             }
         }
+    }
+
+    fun insertMemberToDatabase(member: ParliamentMember) {
+        //Log.d("INSERT" , parliamentMembers.value!![0].firstname)
+        viewModelScope.launch { parliamentRepository.insertParliamentMember(member) }
     }
 
 }

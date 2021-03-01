@@ -1,19 +1,16 @@
 package com.jhiltunen.finnishparliamentmembers.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface ParliamentDatabaseDao {
 
-    @Insert
-    fun insert(member: ParliamentMember)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(member: ParliamentMember)
 
     @Update
-    fun update(member: ParliamentMember)
+    suspend fun update(member: ParliamentMember)
 
     @Query("SELECT * FROM members")
     fun getAllMembers(): LiveData<List<ParliamentMember>>

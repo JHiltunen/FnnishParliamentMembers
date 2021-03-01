@@ -21,9 +21,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(ParliamentMemberViewModel::class.java)
         binding.viewModel = viewModel
 
-        viewModel.parliamentMembers.observe(this) {
-            Log.d("PARLIAMENT", it[0].lastname)
-        }
 
+        viewModel.parliamentMembers.observe(this) {
+            Log.d("HURU", it[0].lastname)
+            it.stream().forEach { member -> viewModel.insertMemberToDatabase(member) }
+        }
     }
 }
