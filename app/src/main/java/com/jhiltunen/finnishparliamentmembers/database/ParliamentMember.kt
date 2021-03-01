@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "parliament_members")
+@Entity(tableName = "members")
 data class ParliamentMember(
         @PrimaryKey(autoGenerate = false)
         @ColumnInfo(name = "heteka_id")

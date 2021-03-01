@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface ParliamentMembersDao {
+interface ParliamentDao {
 
     @Insert
     fun insert(member: ParliamentMember)
@@ -15,6 +15,6 @@ interface ParliamentMembersDao {
     @Update
     fun update(member: ParliamentMember)
 
-    @Query("SELECT * FROM parliament_members")
+    @Query("SELECT * FROM members")
     fun getAllMembers(): LiveData<List<ParliamentMember>>
 }

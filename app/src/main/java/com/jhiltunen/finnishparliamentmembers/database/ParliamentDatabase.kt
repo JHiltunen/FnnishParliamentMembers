@@ -6,23 +6,23 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [ParliamentMember::class], version = 1, exportSchema = false)
-abstract class ParliamentMembersDatabase : RoomDatabase() {
+abstract class ParliamentDatabase : RoomDatabase() {
 
-    abstract val parliamentMembersDatabaseDao: ParliamentMembersDao
+    abstract val parliamentDatabaseDao: ParliamentDao
 
     companion object {
         @Volatile
-        private var INSTANCE: ParliamentMembersDatabase? = null
+        private var INSTANCE: ParliamentDatabase? = null
 
-        fun getInstance(context: Context): ParliamentMembersDatabase {
+        fun getInstance(context: Context): ParliamentDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        ParliamentMembersDatabase::class.java,
-                        "parliament_members_database"
+                        ParliamentDatabase::class.java,
+                        "parliament_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()
