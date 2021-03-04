@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jhiltunen.finnishparliamentmembers.ui.fragments.ParliamentMembersViewModel" />
+            type="com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMembersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

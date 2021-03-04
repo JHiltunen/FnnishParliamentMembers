@@ -12,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.ParliamentMembersFragmentBinding
+import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMembersViewModel
 import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListAdapter
 
 
@@ -35,8 +36,9 @@ class ParliamentMembersFragment : Fragment() {
         binding.playerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.parliamentMembers.observe(this) {
-            Log.d("HURU", it[0].lastname)
-            it.stream().forEach { member -> viewModel.insertMemberToDatabase(member) }
+            Log.d("***", "Observing")
+            //Log.d("HURU", it[0].lastname)
+            viewModel.insertAllMembersToDatabase(it)
             adapter.submitList(it)
         }
 

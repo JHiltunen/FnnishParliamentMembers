@@ -1,25 +1,18 @@
 package com.jhiltunen.finnishparliamentmembers.ui
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.util.Log.d
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberViewModel
+import androidx.lifecycle.Observer
+import androidx.work.Constraints
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.databinding.ActivityMainBinding
-import com.jhiltunen.finnishparliamentmembers.logic.models.Parliament
+import com.jhiltunen.finnishparliamentmembers.logic.services.FetchApiWork
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +21,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val constraints = Constraints.Builder()
+            .apply {
+
+            }
+            .build()
+
+        val repeatingRequest = PeriodicWorkRequestBuilder<FetchApiWork>(15, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+            .build()
+
+        val workManager = WorkManager.getInstance(application)
+        workManager.enqueue(repeatingRequest)
+
+        workManager.getWorkInfoByIdLiveData(repeatingRequest.id).observe(this, Observer {
+            if (it != null) {
+                d("***", "Status changed to ${it.state.isFinished}")
+            }
+        })
+    }
+
+    private fun setupRecurringWork() {
+        Log.d("***", "settingUpRecurringWork...")
+
     }
 }

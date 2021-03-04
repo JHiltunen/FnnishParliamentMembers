@@ -9,6 +9,9 @@ interface ParliamentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(member: ParliamentMember)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(members: List<ParliamentMember>)
+
     @Update
     suspend fun update(member: ParliamentMember)
 
