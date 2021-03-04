@@ -22,28 +22,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        // constraints for WorkManager
         val constraints = Constraints.Builder()
             .apply {
 
             }
             .build()
 
+        // request that's executed every 15 minutes
         val repeatingRequest = PeriodicWorkRequestBuilder<FetchApiWork>(15, TimeUnit.MINUTES)
             .setConstraints(constraints)
             .build()
 
+        // create WorkManager
         val workManager = WorkManager.getInstance(application)
+        // add the repeatingRequest to the enqueue
         workManager.enqueue(repeatingRequest)
-
+        // observe the workManager if it's status changes
         workManager.getWorkInfoByIdLiveData(repeatingRequest.id).observe(this, Observer {
             if (it != null) {
                 d("***", "Status changed to ${it.state.isFinished}")
             }
         })
-    }
-
-    private fun setupRecurringWork() {
-        Log.d("***", "settingUpRecurringWork...")
-
     }
 }
