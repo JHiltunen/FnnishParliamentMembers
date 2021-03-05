@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.ParliamentMembersFragmentBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMembersViewModel
 import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListAdapter
+import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListener
 
 
 class ParliamentMembersFragment : Fragment() {
@@ -31,7 +33,7 @@ class ParliamentMembersFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ParliamentMembersViewModel::class.java)
         binding.viewModel = viewModel
 
-        adapter = ParliamentMemberListAdapter(requireContext())
+        adapter = ParliamentMemberListAdapter(requireContext(), ParliamentMemberListener {hetekaId -> Toast.makeText(context, "$hetekaId", Toast.LENGTH_LONG).show() })
         binding.playerView.adapter = adapter
         binding.playerView.layoutManager = LinearLayoutManager(context)
 
