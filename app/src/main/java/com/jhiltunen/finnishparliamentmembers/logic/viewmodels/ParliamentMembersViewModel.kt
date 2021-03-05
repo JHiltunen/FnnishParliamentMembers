@@ -17,21 +17,8 @@ class ParliamentMembersViewModel(application: Application): AndroidViewModel(app
 
     init {
         parliamentMembers = parliamentRepository.getAllMembers()
-       // Log.d("***", "INIT, setup recurringwork")
-     //   setupRecurringWork()
     }
 
-    /*private fun getParliamentMembersFromApi() {
-        viewModelScope.launch {
-            try {
-                _parliamentMembers.value = ParliamentMemberApi.retrofitService.getParliamentMembers()
-            } catch (e: Exception) {
-                Log.d("***", "getParliamentMembers: ${e.toString()}")
-                _parliamentMembers.value = ArrayList()
-            }
-        }
-    }
-*/
     fun insertMemberToDatabase(member: ParliamentMember) {
         Log.d("***" , parliamentMembers.value!![0].firstname)
         viewModelScope.launch { parliamentRepository.insertParliamentMember(member) }
