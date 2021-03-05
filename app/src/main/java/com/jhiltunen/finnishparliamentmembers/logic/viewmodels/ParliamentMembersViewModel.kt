@@ -12,6 +12,10 @@ import kotlinx.coroutines.launch
 class ParliamentMembersViewModel(application: Application): AndroidViewModel(application) {
     val parliamentMembers: LiveData<List<ParliamentMember>>
 
+    private val _navigateToMemberDetail = MutableLiveData<Int?>()
+    val navigateToMemberDetail
+        get() = _navigateToMemberDetail
+
     private val parliamentDao: ParliamentDao = ParliamentDatabase.getInstance(application).parliamentDao()
     private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDao)
 
@@ -28,5 +32,13 @@ class ParliamentMembersViewModel(application: Application): AndroidViewModel(app
         viewModelScope.launch {
             parliamentRepository.insertAllParliamentMembers(members)
         }
+    }
+
+    fun onParliamentMemberClicked(id: Int) {
+        _navigateToMemberDetail.value = id
+    }
+
+    fun onParliamentMemberNavigated() {
+        _navigateToMemberDetail.value = null
     }
 }
