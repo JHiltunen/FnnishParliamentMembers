@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/memberFragment3"
-        android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.MemberFragment"
+        android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.MemberDetailsFragment"
         android:label="MemberFragment">
         <argument
             android:name="hetekaId"

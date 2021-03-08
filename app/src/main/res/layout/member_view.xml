@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberViewModel" />
+            type="com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel" />
     </data>
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:orientation="vertical">
         <fragment
             android:id="@+id/memberFragment"
-            android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.MemberFragment"
+            android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.MemberDetailsFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

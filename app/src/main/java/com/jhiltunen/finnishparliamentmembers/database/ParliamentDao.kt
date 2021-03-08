@@ -19,5 +19,5 @@ interface ParliamentDao {
     fun getAllMembers(): LiveData<List<ParliamentMember>>
 
     @Query("SELECT * FROM members WHERE heteka_id = :hetekaId")
-    fun getMember(hetekaId: Int): ParliamentMember?
+    fun getMember(hetekaId: Int): LiveData<ParliamentMember>
 }

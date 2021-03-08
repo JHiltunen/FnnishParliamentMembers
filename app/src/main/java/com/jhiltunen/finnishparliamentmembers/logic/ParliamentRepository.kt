@@ -28,6 +28,10 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
         return parliamentDao.getAllMembers()
     }
 
+    fun getMember(hetekaId: Int):LiveData<ParliamentMember> {
+        return parliamentDao.getMember(hetekaId)
+    }
+
     suspend fun fetchParliamentInfoFromApi() {
         withContext(Dispatchers.IO) {
             insertAllParliamentMembers(ParliamentMemberApi.retrofitService.getParliamentMembers())
