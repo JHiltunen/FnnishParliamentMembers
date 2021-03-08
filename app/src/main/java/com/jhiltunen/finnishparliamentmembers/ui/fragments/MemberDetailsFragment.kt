@@ -1,22 +1,17 @@
 package com.jhiltunen.finnishparliamentmembers.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.jhiltunen.finnishparliamentmembers.logic.models.Parliament
-import com.jhiltunen.finnishparliamentmembers.logic.models.ParliamentMembersData
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberDetailsBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
-import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModelFactory
+import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMemberDetailsViewModelFactory
 
 class MemberDetailsFragment : Fragment() {
 
@@ -40,7 +35,7 @@ class MemberDetailsFragment : Fragment() {
         viewModel.member.observe(viewLifecycleOwner, Observer {
             binding.firstname.text = it.firstname
             binding.lastname.text = it.lastname
-            binding.parliament.text = it.party
+            binding.party.text = it.party
         })
 
         return binding.root

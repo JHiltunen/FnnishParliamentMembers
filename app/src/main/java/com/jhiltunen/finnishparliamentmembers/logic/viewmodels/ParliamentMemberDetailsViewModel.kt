@@ -1,7 +1,6 @@
 package com.jhiltunen.finnishparliamentmembers.logic.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao

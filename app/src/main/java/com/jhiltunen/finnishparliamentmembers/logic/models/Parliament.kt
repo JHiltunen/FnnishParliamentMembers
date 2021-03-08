@@ -3,11 +3,11 @@ package com.jhiltunen.finnishparliamentmembers.logic.models
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 
 class Parliament(val members: List<ParliamentMember>) {
-    // return all parties represented in parliament sorted by their name
+    // return all parties represented in party sorted by their name
     fun parties(): List<String> {
         return members.map { it.party }.sorted().distinct()
     }
-    // return all parties represented in parliament sorted by their number of members
+    // return all parties represented in party sorted by their number of members
     fun partiesBySize(): List<String> {
         return parties().map { Pair(it, partyMembers(it).size) }.sortedBy { -it.second }.map { it.first }
     }
