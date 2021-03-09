@@ -15,5 +15,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     tools:context=".ui.fragments.PartiesFragment"
-    tools:listitem="@layout/fragment_parties" />
+    tools:listitem="@layout/fragment_parties_list_item" />
 </layout>

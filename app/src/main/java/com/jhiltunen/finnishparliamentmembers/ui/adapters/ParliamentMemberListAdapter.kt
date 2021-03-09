@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
-import com.jhiltunen.finnishparliamentmembers.databinding.MemberListViewBinding
+import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberListItemBinding
 
 class ParliamentMemberListener(val clickListener: (memberId: Int) -> Unit) {
     fun onClick(member: ParliamentMember) = clickListener(member.hetekaId)
@@ -18,7 +18,7 @@ class ParliamentMemberListener(val clickListener: (memberId: Int) -> Unit) {
 class ParliamentMemberListAdapter(private val context: Context, val clickListener: ParliamentMemberListener): ListAdapter<ParliamentMember, ParliamentMemberListAdapter.ViewHolder>(ParliamentMemberDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(context).inflate(R.layout.member_list_view, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.fragment_member_list_item, parent, false)
         return ViewHolder.from(parent)
     }
 
@@ -30,7 +30,7 @@ class ParliamentMemberListAdapter(private val context: Context, val clickListene
         holder.bind(getItem(position)!!, clickListener)
     }
 
-    class ViewHolder private constructor(val binding: MemberListViewBinding) :
+    class ViewHolder private constructor(val binding: FragmentMemberListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ParliamentMember, clickListener: ParliamentMemberListener) {
@@ -42,7 +42,7 @@ class ParliamentMemberListAdapter(private val context: Context, val clickListene
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = MemberListViewBinding.inflate(layoutInflater, parent, false)
+                val binding = FragmentMemberListItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

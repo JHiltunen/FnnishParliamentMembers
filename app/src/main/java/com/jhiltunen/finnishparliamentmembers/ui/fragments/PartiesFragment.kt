@@ -14,11 +14,9 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.PartiesViewModel
 import com.jhiltunen.finnishparliamentmembers.ui.adapters.PartiesListAdapter
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesListBinding
-import com.jhiltunen.finnishparliamentmembers.ui.adapters.PartiesListener
 
 /**
  * A fragment representing a list of Items.

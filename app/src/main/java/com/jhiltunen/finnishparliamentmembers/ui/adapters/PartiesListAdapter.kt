@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesBinding
+import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesListItemBinding
 import com.jhiltunen.finnishparliamentmembers.ui.fragments.PartiesFragmentDirections
 
 class PartiesListener(val clickListener: (party: String) -> Unit) {
@@ -22,7 +22,7 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(context).inflate(R.layout.fragment_parties, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.fragment_parties_list_item, parent, false)
         return ViewHolder.from(parent)
     }
 
@@ -46,7 +46,7 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
     }
 
 
-    class ViewHolder private constructor(val binding: FragmentPartiesBinding) :
+    class ViewHolder private constructor(val binding: FragmentPartiesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: String, clickListener: PartiesListener) {
@@ -59,7 +59,7 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = FragmentPartiesBinding.inflate(layoutInflater, parent, false)
+                val binding = FragmentPartiesListItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

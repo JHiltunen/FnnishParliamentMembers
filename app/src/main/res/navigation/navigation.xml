@@ -17,7 +17,7 @@
         android:id="@+id/parliamentMembersFragment"
         android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.ParliamentMembersFragment"
         android:label="parliament_members_fragment"
-        tools:layout="@layout/parliament_members_fragment" >
+        tools:layout="@layout/fragment_members_list" >
         <argument
             android:name="party"
             app:argType="string" />

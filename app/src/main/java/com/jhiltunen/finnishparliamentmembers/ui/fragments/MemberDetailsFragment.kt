@@ -9,13 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberDetailsBinding
+import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberViewDetailsBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMemberDetailsViewModelFactory
 
 class MemberDetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentMemberDetailsBinding
+    private lateinit var binding: FragmentMemberViewDetailsBinding
     private lateinit var viewModel: ParliamentMemberDetailsViewModel
     private lateinit var viewModelFactory : ParliamentMemberDetailsViewModelFactory
 
@@ -24,7 +24,7 @@ class MemberDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_details,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_view_details,container,false)
         hetekaId =  MemberDetailsFragmentArgs.fromBundle(requireArguments()).hetekaId
 
         viewModelFactory = ParliamentMemberDetailsViewModelFactory(hetekaId, requireNotNull(activity).application)

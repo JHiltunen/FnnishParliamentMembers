@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -16,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.databinding.ParliamentMembersFragmentBinding
+import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMembersListBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMembersViewModelFactory
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMembersViewModel
 import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListAdapter
@@ -25,7 +24,7 @@ import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListen
 
 class ParliamentMembersFragment : Fragment() {
 
-    private lateinit var binding: ParliamentMembersFragmentBinding
+    private lateinit var binding: FragmentMembersListBinding
     private lateinit var viewModel: ParliamentMembersViewModel
     private lateinit var adapter: ParliamentMemberListAdapter
     private lateinit var viewModelFactory : ParliamentMembersViewModelFactory
@@ -45,7 +44,7 @@ class ParliamentMembersFragment : Fragment() {
         //ParliamentMembersFragment.fromBundle(requireArguments()).partyName
         viewModelFactory = ParliamentMembersViewModelFactory(party, requireNotNull(activity).application)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.parliament_members_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_members_list, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ParliamentMembersViewModel::class.java)
 
         binding.viewModel = viewModel
@@ -59,8 +58,6 @@ class ParliamentMembersFragment : Fragment() {
         binding.playerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.parliamentMembers.observe(viewLifecycleOwner) {
-            Log.d("***", "Observing")
-            //Log.d("HURU", it[0].lastname)
             viewModel.insertAllMembersToDatabase(it)
             adapter.submitList(it)
         }
