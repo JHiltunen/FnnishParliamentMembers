@@ -12,10 +12,6 @@ import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
 class PartiesViewModel (application: Application): AndroidViewModel(application) {
     val parties: LiveData<List<String>>
 
-    private val _navigateToPartyMemberList = MutableLiveData<String?>()
-    val navigateToPartyMemberList
-        get() = _navigateToPartyMemberList
-
     private val parliamentDao: ParliamentDao = ParliamentDatabase.getInstance(application).parliamentDao()
     private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDao)
 
