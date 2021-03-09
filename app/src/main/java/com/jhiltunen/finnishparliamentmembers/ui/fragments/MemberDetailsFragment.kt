@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.jhiltunen.finnishparliamentmembers.R
+import com.jhiltunen.finnishparliamentmembers.bindImage
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberViewDetailsBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMemberDetailsViewModelFactory
@@ -37,6 +38,7 @@ class MemberDetailsFragment : Fragment() {
             binding.firstname.text = it.firstname
             binding.lastname.text = it.lastname
             binding.partyName.text = it.party
+            bindImage(binding.imageView, "https://avoindata.eduskunta.fi/${it.pictureUrl}")
         })
 
         return binding.root

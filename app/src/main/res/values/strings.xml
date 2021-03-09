@@ -9,4 +9,5 @@
     <string name="likebutton_desc">LikeButton</string>
     <string name="dislikebutton_desc">Dislike</string>
     <string name="likeDislike_placeholder">Like/Dislike ratio</string>
+    <string name="contentDescription">MemberImage</string>
 </resources>

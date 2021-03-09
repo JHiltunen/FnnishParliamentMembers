@@ -3,11 +3,13 @@ package com.jhiltunen.finnishparliamentmembers.ui.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jhiltunen.finnishparliamentmembers.R
+import com.jhiltunen.finnishparliamentmembers.bindImage
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberListItemBinding
 
@@ -23,11 +25,13 @@ class ParliamentMemberListAdapter(private val context: Context, val clickListene
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
         // could use binding?
         holder.itemView.findViewById<TextView>(R.id.firstName).text = getItem(position).firstname
-        holder.itemView.findViewById<TextView>(R.id.lastName).text = getItem(position).lastname
-
-        holder.bind(getItem(position)!!, clickListener)
+        holder.binding.firstName.text = item.firstname
+        holder.binding.lastName.text = item.lastname
+        bindImage(holder.binding.memberImage, "https://avoindata.eduskunta.fi/${item.pictureUrl}")
+        holder.bind(item!!, clickListener)
     }
 
     class ViewHolder private constructor(val binding: FragmentMemberListItemBinding) :
