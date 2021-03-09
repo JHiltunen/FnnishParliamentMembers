@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberViewDetailsBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
@@ -19,13 +20,13 @@ class MemberDetailsFragment : Fragment() {
     private lateinit var viewModel: ParliamentMemberDetailsViewModel
     private lateinit var viewModelFactory : ParliamentMemberDetailsViewModelFactory
 
-    var hetekaId : Int = -1
-    private set
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        val args: MemberDetailsFragmentArgs by navArgs()
+        val hetekaId = args.hetekaId
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_view_details,container,false)
-        hetekaId =  MemberDetailsFragmentArgs.fromBundle(requireArguments()).hetekaId
 
         viewModelFactory = ParliamentMemberDetailsViewModelFactory(hetekaId, requireNotNull(activity).application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ParliamentMemberDetailsViewModel::class.java)
