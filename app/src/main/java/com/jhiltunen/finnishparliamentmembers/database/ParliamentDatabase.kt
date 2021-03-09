@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [ParliamentMember::class], version = 1, exportSchema = false)
+@Database(entities = [ParliamentMember::class], version = 2, exportSchema = false)
 abstract class ParliamentDatabase : RoomDatabase() {
     abstract fun parliamentDao() : ParliamentDao
     companion object {

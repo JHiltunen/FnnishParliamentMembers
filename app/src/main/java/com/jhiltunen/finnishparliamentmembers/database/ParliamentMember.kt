@@ -19,7 +19,7 @@ data class ParliamentMember(
         @ColumnInfo(name = "firstname")
         val firstname: String,
 
-        @ColumnInfo(name = "party")
+        @ColumnInfo(name = "partyName")
         val party: String,
 
         @ColumnInfo(name = "minister")

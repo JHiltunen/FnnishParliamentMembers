@@ -17,7 +17,7 @@ class MemberDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentMemberDetailsBinding
     private lateinit var viewModel: ParliamentMemberDetailsViewModel
-    lateinit var viewModelFactory : ParliamentMemberDetailsViewModelFactory
+    private lateinit var viewModelFactory : ParliamentMemberDetailsViewModelFactory
 
     var hetekaId : Int = -1
     private set
@@ -35,7 +35,7 @@ class MemberDetailsFragment : Fragment() {
         viewModel.member.observe(viewLifecycleOwner, Observer {
             binding.firstname.text = it.firstname
             binding.lastname.text = it.lastname
-            binding.party.text = it.party
+            binding.partyName.text = it.party
         })
 
         return binding.root

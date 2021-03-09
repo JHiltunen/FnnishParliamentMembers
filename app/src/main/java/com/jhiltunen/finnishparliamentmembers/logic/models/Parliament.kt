@@ -3,19 +3,19 @@ package com.jhiltunen.finnishparliamentmembers.logic.models
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 
 class Parliament(val members: List<ParliamentMember>) {
-    // return all parties represented in party sorted by their name
+    // return all parties represented in partyName sorted by their name
     fun parties(): List<String> {
         return members.map { it.party }.sorted().distinct()
     }
-    // return all parties represented in party sorted by their number of members
+    // return all parties represented in partyName sorted by their number of members
     fun partiesBySize(): List<String> {
         return parties().map { Pair(it, partyMembers(it).size) }.sortedBy { -it.second }.map { it.first }
     }
-    // return all members belonging to party sorted alphabetically by lastname, firstname
+    // return all members belonging to partyName sorted alphabetically by lastname, firstname
     fun partyMembers(party: String): List<ParliamentMember> {
         return members.filter { it.party == party }.sortedBy { it.lastname + it.firstname }
     }
-    // return a map from party name (String) to members belonging to that party
+    // return a map from partyName name (String) to members belonging to that partyName
     fun toPartyMap(): Map<String, List<ParliamentMember>> {
         return  parties().map { it to partyMembers(it) }.toMap()
     }

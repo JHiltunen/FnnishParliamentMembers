@@ -20,4 +20,10 @@ interface ParliamentDao {
 
     @Query("SELECT * FROM members WHERE heteka_id = :hetekaId")
     fun getMember(hetekaId: Int): LiveData<ParliamentMember>
+
+    @Query("SELECT DISTINCT partyName FROM members")
+    fun getAllParties(): LiveData<List<String>>
+
+    @Query("SELECT * FROM members WHERE partyName = :party")
+    fun getAllMembersInParty(party: String): LiveData<List<ParliamentMember>>
 }

@@ -9,7 +9,7 @@ import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
 import kotlinx.coroutines.launch
 
-class ParliamentMembersViewModel(application: Application): AndroidViewModel(application) {
+class ParliamentMembersViewModel(party: String, application: Application): AndroidViewModel(application) {
     val parliamentMembers: LiveData<List<ParliamentMember>>
 
     private val _navigateToMemberDetail = MutableLiveData<Int?>()
@@ -20,7 +20,7 @@ class ParliamentMembersViewModel(application: Application): AndroidViewModel(app
     private val parliamentRepository: ParliamentRepository = ParliamentRepository(parliamentDao)
 
     init {
-        parliamentMembers = parliamentRepository.getAllMembers()
+        parliamentMembers = parliamentRepository.getAllMembersInParty(party)
     }
 
     fun insertMemberToDatabase(member: ParliamentMember) {

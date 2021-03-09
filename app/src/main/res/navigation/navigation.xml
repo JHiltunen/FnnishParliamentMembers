@@ -3,13 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/parliamentMembersFragment">
+    app:startDestination="@id/partiesFragment">
 
+    <fragment
+        android:id="@+id/partiesFragment"
+        android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.PartiesFragment"
+        android:label="PartiesFragment" >
+        <action
+            android:id="@+id/action_partiesFragment_to_parliamentMembersFragment"
+            app:destination="@id/parliamentMembersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/parliamentMembersFragment"
         android:name="com.jhiltunen.finnishparliamentmembers.ui.fragments.ParliamentMembersFragment"
         android:label="parliament_members_fragment"
         tools:layout="@layout/parliament_members_fragment" >
+        <argument
+            android:name="party"
+            app:argType="string" />
         <action
             android:id="@+id/action_parliamentMembersFragment_to_memberFragment3"
             app:destination="@id/memberFragment3" />
