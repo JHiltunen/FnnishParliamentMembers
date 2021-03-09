@@ -58,7 +58,6 @@ class ParliamentMembersFragment : Fragment() {
         binding.playerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.parliamentMembers.observe(viewLifecycleOwner) {
-            viewModel.insertAllMembersToDatabase(it)
             adapter.submitList(it)
         }
 

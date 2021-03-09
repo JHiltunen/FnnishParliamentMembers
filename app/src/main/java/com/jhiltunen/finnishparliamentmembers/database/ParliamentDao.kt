@@ -1,6 +1,7 @@
 package com.jhiltunen.finnishparliamentmembers.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -11,6 +12,9 @@ interface ParliamentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(members: List<ParliamentMember>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertDefaultLikes(memberLikes: List<MemberLikes>)
 
     @Update
     suspend fun update(member: ParliamentMember)
@@ -26,4 +30,11 @@ interface ParliamentDao {
 
     @Query("SELECT * FROM members WHERE partyName = :party")
     fun getAllMembersInParty(party: String): LiveData<List<ParliamentMember>>
+
+    @Query("SELECT likes FROM members_likes WHERE heteka_id = :hetekaId")
+    fun getMembersLikes(hetekaId: Int): LiveData<Int>
+
+    @Update
+    fun updateMemberLikes(memberLikes: MemberLikes)
+
 }

@@ -2,6 +2,8 @@ package com.jhiltunen.finnishparliamentmembers.logic
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.jhiltunen.finnishparliamentmembers.database.MemberLikes
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
@@ -18,6 +20,16 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
 
     suspend fun insertAllParliamentMembers(members: List<ParliamentMember>) {
         parliamentDao.insertAll(members)
+        insertDefaultLikes(members)
+    }
+
+    suspend fun insertDefaultLikes(members: List<ParliamentMember>) {
+        var memberLikes : MutableList<MemberLikes> = ArrayList()
+        for (member in members) {
+            memberLikes.add(MemberLikes(member.hetekaId, 0))
+        }
+
+        parliamentDao.insertDefaultLikes(memberLikes)
     }
 
     suspend fun updateParliamentMember(parliamentMember: ParliamentMember) {
@@ -40,9 +52,24 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
         return parliamentDao.getAllMembersInParty(party)
     }
 
+    fun getMemberLikes(hetekaId: Int): LiveData<Int> {
+        return parliamentDao.getMembersLikes(hetekaId)
+    }
+
+    fun updateMemberLikes(memberLikes: MemberLikes) {
+        parliamentDao.updateMemberLikes(memberLikes)
+    }
+
     suspend fun fetchParliamentInfoFromApi() {
         withContext(Dispatchers.IO) {
-            insertAllParliamentMembers(ParliamentMemberApi.retrofitService.getParliamentMembers())
+            var membersFromApi = ParliamentMemberApi.retrofitService.getParliamentMembers()
+            var membersFromDatabase = getAllMembers()
+
+            if (membersFromApi != membersFromDatabase.value) {
+                insertAllParliamentMembers(ParliamentMemberApi.retrofitService.getParliamentMembers())
+            } else {
+                Log.d("NOTE", "Data is already in database")
+            }
         }
     }
 }

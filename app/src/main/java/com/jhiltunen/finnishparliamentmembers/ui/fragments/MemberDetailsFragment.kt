@@ -41,6 +41,18 @@ class MemberDetailsFragment : Fragment() {
             bindImage(binding.imageView, "https://avoindata.eduskunta.fi/${it.pictureUrl}")
         })
 
+        viewModel.memberLikes.observe(viewLifecycleOwner, Observer {
+           binding.likeDislikeRatio.text = it.toString()
+        })
+
+        binding.likeButton.setOnClickListener {
+            viewModel.increaseLikes()
+        }
+
+        binding.dislikeButton.setOnClickListener {
+            viewModel.decreaseLikes()
+        }
+
         return binding.root
     }
 }
