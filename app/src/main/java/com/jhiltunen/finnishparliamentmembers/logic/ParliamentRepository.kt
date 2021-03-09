@@ -65,7 +65,7 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
             var membersFromApi = ParliamentMemberApi.retrofitService.getParliamentMembers()
             var membersFromDatabase = getAllMembers()
 
-            if (membersFromApi != membersFromDatabase.value) {
+            if (membersFromApi == membersFromDatabase.value) {
                 insertAllParliamentMembers(ParliamentMemberApi.retrofitService.getParliamentMembers())
             } else {
                 Log.d("NOTE", "Data is already in database")
