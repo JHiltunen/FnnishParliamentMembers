@@ -23,16 +23,4 @@ class PartiesViewModel (application: Application): AndroidViewModel(application)
         parties = parliamentRepository.getAllParties()
     }
 
-    fun getAllMembersInParty(party: String) {
-        parliamentRepository.getAllMembersInParty(party)
-    }
-
-    fun onPartyClicked(party: String) {
-        Log.d("text", party)
-        _navigateToPartyMemberList.value = party
-    }
-
-    fun onPartyMemberListNavigated() {
-        _navigateToPartyMemberList.value = null
-    }
 }

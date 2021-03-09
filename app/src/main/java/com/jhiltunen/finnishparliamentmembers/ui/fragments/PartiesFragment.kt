@@ -46,16 +46,6 @@ class PartiesFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        viewModel.navigateToPartyMemberList.observe(viewLifecycleOwner, Observer { partyName ->
-           // Toast.makeText(context, "Party: $partyName", Toast.LENGTH_LONG)
-
-            partyName?.let {
-                this.findNavController().navigate(
-                    PartiesFragmentDirections.actionPartiesFragmentToParliamentMembersFragment(it))
-                Log.d("PARTY", "$partyName")
-                viewModel.onPartyMemberListNavigated()
-            }
-        })
         return binding.root
     }
 }
