@@ -4,7 +4,8 @@ import androidx.room.*
 
 /**
  * Represents room database table "members_likes".
- * @param hetekaId Is id for specific member.
+ * Has ForeignKey relationship to members table.
+ * @param hetekaId Is unique id for specific member.
  * @param lieks Is number of likes member has
  */
 @Entity(tableName = "members_likes", indices = [Index(value = ["heteka_id"], unique = true)], foreignKeys = [ForeignKey(entity = ParliamentMember::class, parentColumns = arrayOf("heteka_id"), childColumns = arrayOf("heteka_id"), onDelete = ForeignKey.CASCADE)])
