@@ -8,6 +8,7 @@ import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.invoke
 import kotlinx.coroutines.withContext
 
 class ParliamentRepository(private val parliamentDao: ParliamentDao) {
@@ -61,15 +62,7 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
     }
 
     suspend fun fetchParliamentInfoFromApi() {
-        withContext(Dispatchers.IO) {
-            var membersFromApi = ParliamentMemberApi.retrofitService.getParliamentMembers()
-            var membersFromDatabase = getAllMembers()
-
-            if (membersFromApi != membersFromDatabase.value) {
-                insertAllParliamentMembers(ParliamentMemberApi.retrofitService.getParliamentMembers())
-            } else {
-                Log.d("NOTE", "Data is already in database")
-            }
-        }
+        val parliamentMembers = ParliamentMemberApi.retrofitService.getParliamentMembers()
+            insertAllParliamentMembers(parliamentMembers)
     }
 }

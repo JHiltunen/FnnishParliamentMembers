@@ -22,21 +22,12 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var repository: ParliamentRepository
-    private lateinit var dao: ParliamentDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        dao = ParliamentDatabase.getInstance(applicationContext).parliamentDao()
-        repository = ParliamentRepository(dao)
-
-        suspend {
-            repository.fetchParliamentInfoFromApi()
-        }
-
-        // constraints for WorkManager
+       // constraints for WorkManager
         val constraints = Constraints.Builder()
             .apply {
 

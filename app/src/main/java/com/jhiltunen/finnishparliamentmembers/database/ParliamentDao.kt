@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
+/**
+ * Defines SQL commands for the app to use for database.
+ * Runs queries against Room database.
+ */
 @Dao
 interface ParliamentDao {
 

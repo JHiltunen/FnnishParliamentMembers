@@ -36,6 +36,10 @@ class PartiesFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(PartiesViewModel::class.java)
         binding.viewModel = viewModel
 
+        if (viewModel.parties.value == null) {
+            viewModel.fetchDataFromApi()
+        }
+
         adapter = PartiesListAdapter(requireContext(), viewModel.parties)
 
         binding.list.adapter = adapter
