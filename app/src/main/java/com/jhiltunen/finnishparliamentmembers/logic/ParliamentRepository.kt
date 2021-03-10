@@ -7,12 +7,10 @@ import com.jhiltunen.finnishparliamentmembers.database.MemberLikes
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.invoke
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class ParliamentRepository(private val parliamentDao: ParliamentDao) {
-    val parliamentData: LiveData<List<ParliamentMember>> = parliamentDao.getAllMembers()
+    private val parliamentData: LiveData<List<ParliamentMember>> = parliamentDao.getAllMembers()
 
     suspend fun insertParliamentMember(parliamentMember: ParliamentMember) {
         Log.d("REPO", parliamentMember.toString())
@@ -21,7 +19,6 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
 
     suspend fun insertAllParliamentMembers(members: List<ParliamentMember>) {
         parliamentDao.insertAll(members)
-        insertDefaultLikes(members)
     }
 
     suspend fun insertDefaultLikes(members: List<ParliamentMember>) {
@@ -45,6 +42,10 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
         return parliamentDao.getMember(hetekaId)
     }
 
+    suspend fun updateAllMembers(members: List<ParliamentMember>) {
+        parliamentDao.updateAllMembers(members)
+    }
+
     fun getAllParties():LiveData<List<String>> {
         return parliamentDao.getAllParties()
     }
@@ -61,8 +62,22 @@ class ParliamentRepository(private val parliamentDao: ParliamentDao) {
         parliamentDao.updateMemberLikes(memberLikes)
     }
 
+    private fun getMembersRowCount(): Int {
+        return parliamentDao.getMembersRowCount()
+    }
+
     suspend fun fetchParliamentInfoFromApi() {
         val parliamentMembers = ParliamentMemberApi.retrofitService.getParliamentMembers()
-            insertAllParliamentMembers(parliamentMembers)
+        CoroutineScope(Dispatchers.IO).launch {
+            Log.d("TESTCASE", "ROW COUNT:${getMembersRowCount()}")
+            if (getMembersRowCount() > 0) {
+                updateAllMembers(parliamentMembers)
+                Log.d("TESTCASE", "Data was already in database")
+            } else {
+                Log.d("TESTCASE", "Data wasn't in database")
+                insertAllParliamentMembers(parliamentMembers)
+                insertDefaultLikes(parliamentMembers)
+            }
+        }
     }
 }

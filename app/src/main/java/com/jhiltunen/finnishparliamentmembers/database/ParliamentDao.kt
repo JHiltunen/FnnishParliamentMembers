@@ -17,11 +17,14 @@ interface ParliamentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(members: List<ParliamentMember>)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDefaultLikes(memberLikes: List<MemberLikes>)
 
     @Update
     suspend fun update(member: ParliamentMember)
+
+    @Update
+    suspend fun updateAllMembers(members: List<ParliamentMember>)
 
     @Query("SELECT * FROM members")
     fun getAllMembers(): LiveData<List<ParliamentMember>>
@@ -37,6 +40,9 @@ interface ParliamentDao {
 
     @Query("SELECT likes FROM members_likes WHERE heteka_id = :hetekaId")
     fun getMembersLikes(hetekaId: Int): LiveData<Int>
+
+    @Query("SELECT COUNT(members.heteka_id) FROM members")
+    fun getMembersRowCount(): Int
 
     @Update
     fun updateMemberLikes(memberLikes: MemberLikes)
