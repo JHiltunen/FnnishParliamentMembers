@@ -1,8 +1,6 @@
 package com.jhiltunen.finnishparliamentmembers.ui.adapters
 
 import android.content.Context
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesListItemBinding
 import com.jhiltunen.finnishparliamentmembers.ui.fragments.PartiesFragmentDirections
@@ -26,14 +25,6 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
         return ViewHolder.from(parent)
     }
 
-    /*override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // could use binding?
-        //holder.itemView.findViewById<TextView>(R.id.partyName).text = getItem(position)
-
-
-        holder.bind(getItem(position)!!, clickListener)
-    }*/
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         (holder.itemView.findViewById<TextView>(R.id.partyName) as TextView).apply {
             text = partiesList.value?.get(position) ?: "unknown"
@@ -48,14 +39,6 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
 
     class ViewHolder private constructor(val binding: FragmentPartiesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: String, clickListener: PartiesListener) {
-            Log.d("item", item)
-            binding.partyName.text = item
-            binding.clickListener = clickListener
-            binding.executePendingBindings()
-        }
-
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)

@@ -23,14 +23,10 @@ import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListen
 
 
 class ParliamentMembersFragment : Fragment() {
-
     private lateinit var binding: FragmentMembersListBinding
     private lateinit var viewModel: ParliamentMembersViewModel
     private lateinit var adapter: ParliamentMemberListAdapter
     private lateinit var viewModelFactory : ParliamentMembersViewModelFactory
-
-
-    //var party : LiveData<String>() = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +37,6 @@ class ParliamentMembersFragment : Fragment() {
 
         Log.d("ARGS", ParliamentMembersFragmentArgs.fromBundle(requireArguments()).party)
         //Log.d("parliamentmembers", party)
-        //ParliamentMembersFragment.fromBundle(requireArguments()).partyName
         viewModelFactory = ParliamentMembersViewModelFactory(party, requireNotNull(activity).application)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_members_list, container, false)

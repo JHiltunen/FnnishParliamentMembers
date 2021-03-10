@@ -1,22 +1,16 @@
 package com.jhiltunen.finnishparliamentmembers.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Log.d
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.work.Constraints
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
-import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
 import com.jhiltunen.finnishparliamentmembers.databinding.ActivityMainBinding
-import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
 import com.jhiltunen.finnishparliamentmembers.logic.services.FetchApiWork
-import com.jhiltunen.finnishparliamentmembers.logic.services.ParliamentMemberApiService
-import kotlinx.coroutines.CoroutineScope
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {

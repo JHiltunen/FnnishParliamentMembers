@@ -1,22 +1,21 @@
 package com.jhiltunen.finnishparliamentmembers.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.bindImage
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberViewDetailsBinding
-import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMemberDetailsViewModelFactory
+import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
 
 class MemberDetailsFragment : Fragment() {
-
     private lateinit var binding: FragmentMemberViewDetailsBinding
     private lateinit var viewModel: ParliamentMemberDetailsViewModel
     private lateinit var viewModelFactory : ParliamentMemberDetailsViewModelFactory

@@ -1,13 +1,13 @@
 package com.jhiltunen.finnishparliamentmembers.logic.viewmodels
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDao
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentDatabase
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.logic.ParliamentRepository
-import kotlinx.coroutines.launch
 
 class ParliamentMembersViewModel(party: String, application: Application): AndroidViewModel(application) {
     val parliamentMembers: LiveData<List<ParliamentMember>>
@@ -21,17 +21,6 @@ class ParliamentMembersViewModel(party: String, application: Application): Andro
 
     init {
         parliamentMembers = parliamentRepository.getAllMembersInParty(party)
-    }
-
-    fun insertMemberToDatabase(member: ParliamentMember) {
-        Log.d("***" , parliamentMembers.value!![0].firstname)
-        viewModelScope.launch { parliamentRepository.insertParliamentMember(member) }
-    }
-
-    fun insertAllMembersToDatabase(members: List<ParliamentMember>) {
-        viewModelScope.launch {
-            parliamentRepository.insertAllParliamentMembers(members)
-        }
     }
 
     fun onParliamentMemberClicked(id: Int) {

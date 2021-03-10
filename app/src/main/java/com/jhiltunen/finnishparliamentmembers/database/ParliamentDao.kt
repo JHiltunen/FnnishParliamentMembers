@@ -1,7 +1,6 @@
 package com.jhiltunen.finnishparliamentmembers.database
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 /**
@@ -10,9 +9,6 @@ import androidx.room.*
  */
 @Dao
 interface ParliamentDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(member: ParliamentMember)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(members: List<ParliamentMember>)

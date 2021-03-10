@@ -1,4 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers.logic.models
+package com.jhiltunen.finnishparliamentmembers.logic.dummydata
 
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 
