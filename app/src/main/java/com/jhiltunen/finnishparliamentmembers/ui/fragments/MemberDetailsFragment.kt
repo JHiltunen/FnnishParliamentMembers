@@ -10,10 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.jhiltunen.finnishparliamentmembers.R
-import com.jhiltunen.finnishparliamentmembers.bindImage
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberViewDetailsBinding
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMemberDetailsViewModelFactory
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMemberDetailsViewModel
+import com.jhiltunen.finnishparliamentmembers.ui.adapters.bindImage
 
 /**
  * Fragment that displays parliament members information.

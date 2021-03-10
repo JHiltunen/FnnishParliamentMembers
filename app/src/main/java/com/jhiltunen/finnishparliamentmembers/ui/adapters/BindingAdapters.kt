@@ -1,4 +1,4 @@
-package com.jhiltunen.finnishparliamentmembers
+package com.jhiltunen.finnishparliamentmembers.ui.adapters
 
 import android.widget.ImageView
 import androidx.core.net.toUri
