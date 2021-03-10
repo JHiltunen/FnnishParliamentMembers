@@ -3,41 +3,41 @@ package com.jhiltunen.finnishparliamentmembers.ui.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.database.ParliamentMember
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMemberListItemBinding
+import com.jhiltunen.finnishparliamentmembers.ui.fragments.ParliamentMembersFragmentDirections
 
-class ParliamentMemberListener(val clickListener: (memberId: Int) -> Unit) {
-    fun onClick(member: ParliamentMember) = clickListener(member.hetekaId)
-}
-
-class ParliamentMemberListAdapter(private val context: Context, val clickListener: ParliamentMemberListener): ListAdapter<ParliamentMember, ParliamentMemberListAdapter.ViewHolder>(ParliamentMemberDiffCallback()) {
+class ParliamentMemberListAdapter(private val context: Context, val membersList: LiveData<List<ParliamentMember>>): ListAdapter<ParliamentMember, ParliamentMemberListAdapter.ViewHolder>(ParliamentMemberDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(context).inflate(R.layout.fragment_member_list_item, parent, false)
         return ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.binding.firstName.text = item.firstname
-        holder.binding.lastName.text = item.lastname
-        bindImage(holder.binding.memberImage, "https://avoindata.eduskunta.fi/${item.pictureUrl}")
-        holder.bind(item!!, clickListener)
+    override fun onBindViewHolder(holder: ParliamentMemberListAdapter.ViewHolder, position: Int) {
+        (holder.binding.listItem).apply {
+            val item = membersList.value?.get(position)
+            holder.binding.firstName.text = item?.firstname ?: "unknown"
+            holder.binding.lastName.text = item?.lastname ?: "unknown"
+            bindImage(holder.binding.memberImage, "https://avoindata.eduskunta.fi/${item?.pictureUrl}")
+            setOnClickListener {
+                val action =
+                        item?.hetekaId?.let { it1 -> ParliamentMembersFragmentDirections.actionParliamentMembersFragmentToMemberFragment3(it1) }
+                if (action != null) {
+                    it.findNavController().navigate(action)
+                }
+            }
+        }
     }
 
     class ViewHolder private constructor(val binding: FragmentMemberListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: ParliamentMember, clickListener: ParliamentMemberListener) {
-            binding.member = item
-            binding.clickListener = clickListener
-            binding.executePendingBindings()
-        }
-
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)

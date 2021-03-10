@@ -7,16 +7,12 @@
         <variable
             name="member"
             type="com.jhiltunen.finnishparliamentmembers.database.ParliamentMember"/>
-        <variable
-            name="clickListener"
-            type="com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListener" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/listItem"
         android:layout_width="match_parent"
         android:layout_height="83dp"
-        android:onClick="@{() -> clickListener.onClick(member)}"
         android:orientation="horizontal">
 
         <ImageView

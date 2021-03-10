@@ -3,7 +3,6 @@ package com.jhiltunen.finnishparliamentmembers.ui.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -26,7 +25,7 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.itemView.findViewById<TextView>(R.id.partyName) as TextView).apply {
+        (holder.binding.partyName).apply {
             text = partiesList.value?.get(position) ?: "unknown"
             setOnClickListener {
                 val action =
@@ -35,7 +34,6 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
             }
         }
     }
-
 
     class ViewHolder private constructor(val binding: FragmentPartiesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

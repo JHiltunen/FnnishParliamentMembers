@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,7 +18,6 @@ import com.jhiltunen.finnishparliamentmembers.databinding.FragmentMembersListBin
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodelfactorys.ParliamentMembersViewModelFactory
 import com.jhiltunen.finnishparliamentmembers.logic.viewmodels.ParliamentMembersViewModel
 import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListAdapter
-import com.jhiltunen.finnishparliamentmembers.ui.adapters.ParliamentMemberListener
 
 /**
  * Fragment that displays all parliament members that belong the specific party.
@@ -60,10 +58,7 @@ class ParliamentMembersFragment : Fragment() {
         // give the binding object a reference to it.
         binding.viewModel = viewModel
 
-        adapter = ParliamentMemberListAdapter(requireContext(), ParliamentMemberListener {hetekaId ->
-            Toast.makeText(context, "$hetekaId", Toast.LENGTH_LONG).show()
-            viewModel.onParliamentMemberClicked(hetekaId)
-        })
+        adapter = ParliamentMemberListAdapter(requireContext(), viewModel.parliamentMembers)
 
         binding.playerView.adapter = adapter
         binding.playerView.layoutManager = LinearLayoutManager(context)
