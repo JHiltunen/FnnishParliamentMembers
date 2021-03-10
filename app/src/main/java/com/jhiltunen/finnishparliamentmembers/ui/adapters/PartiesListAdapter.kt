@@ -12,10 +12,6 @@ import com.jhiltunen.finnishparliamentmembers.R
 import com.jhiltunen.finnishparliamentmembers.databinding.FragmentPartiesListItemBinding
 import com.jhiltunen.finnishparliamentmembers.ui.fragments.PartiesFragmentDirections
 
-class PartiesListener(val clickListener: (party: String) -> Unit) {
-    fun onClick(party: String) = clickListener(party)
-}
-
 class PartiesListAdapter(private val context: Context, val partiesList : LiveData<List<String>>) : ListAdapter<String, PartiesListAdapter.ViewHolder>(PartiesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,11 +21,36 @@ class PartiesListAdapter(private val context: Context, val partiesList : LiveDat
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.binding.partyName).apply {
-            text = partiesList.value?.get(position) ?: "unknown"
+        val item = getItem(position)
+        (holder.binding.constraintLayout).apply {
+
+            holder.binding.partyName.text = when(item) {
+                "sd" -> "Suomen Sosialidemokraattinen Puolue"
+                "ps" -> "Perussuomalaiset"
+                "kesk" -> "Suomen Keskusta"
+                "kok" -> "Kansallinen Kokoomus"
+                "vas" -> "Vasemmistoliitto"
+                "vihr" -> "Vihreä liitto"
+                "kd" -> "Suomen Kristillisdemokraatit"
+                "r" -> "Suomen ruotsalainen kansanpuolue"
+                else -> "Liike Nyt"
+            }
+
+            holder.binding.imageView2.setImageResource(when(item) {
+                "sd" -> R.drawable.sdp
+                "ps" -> R.drawable.ps
+                "kesk" -> R.drawable.kesk
+                "kok" -> R.drawable.kok
+                "vas" -> R.drawable.vas
+                "vihr" -> R.drawable.vihr
+                "kd" -> R.drawable.kd
+                "r" -> R.drawable.rkp
+                else -> R.drawable.lkn
+            })
+
             setOnClickListener {
                 val action =
-                    PartiesFragmentDirections.actionPartiesFragmentToParliamentMembersFragment(text.toString())
+                    PartiesFragmentDirections.actionPartiesFragmentToParliamentMembersFragment(item)
                 it.findNavController().navigate(action)
             }
         }

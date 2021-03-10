@@ -58,7 +58,7 @@ class PartiesFragment : Fragment() {
         adapter = PartiesListAdapter(requireContext(), viewModel.parties)
 
         binding.list.adapter = adapter
-        binding.list.layoutManager = GridLayoutManager(context, 4)
+        binding.list.layoutManager = GridLayoutManager(context, 1)
 
         // Add an Observer to detect database changes on parties name list
         viewModel.parties.observe(viewLifecycleOwner) {
