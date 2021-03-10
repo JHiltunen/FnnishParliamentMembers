@@ -23,8 +23,7 @@ class ParliamentMemberListAdapter(private val context: Context, val membersList:
     override fun onBindViewHolder(holder: ParliamentMemberListAdapter.ViewHolder, position: Int) {
         (holder.binding.listItem).apply {
             val item = membersList.value?.get(position)
-            holder.binding.firstName.text = item?.firstname ?: "unknown"
-            holder.binding.lastName.text = item?.lastname ?: "unknown"
+            holder.binding.firstName.text = item?.firstname + " " + item?.lastname ?: "unknown"
             bindImage(holder.binding.memberImage, "https://avoindata.eduskunta.fi/${item?.pictureUrl}")
             setOnClickListener {
                 val action =
