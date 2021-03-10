@@ -56,9 +56,23 @@ class MemberDetailsFragment : Fragment() {
         // Add an Observer to the ParliamentMember object to detect database changes on member details
         viewModel.member.observe(viewLifecycleOwner, Observer {
             // Set member information to the view
-            binding.firstname.text = it.firstname
-            binding.lastname.text = it.lastname
-            binding.partyName.text = it.party
+            binding.name.text = "${it.firstname} ${it.lastname}"
+            binding.partyName.text = (when (it.party) {
+                "sd" -> "SDP"
+                "ps" -> "Perussuomalaiset"
+                "kesk" -> "Keskusta"
+                "kok" -> "Kokoomus"
+                "vas" -> "Vasemmistoliitto"
+                "vihr" -> "Vihreät"
+                "kd" -> "Kristillisdemokraatit"
+                "r" -> "RKP"
+                else -> "Liike Nyt"
+            })
+
+            binding.minister.text = (when (it.minister) {
+                true -> "Minister"
+                else -> ""
+            })
             bindImage(binding.imageView, "https://avoindata.eduskunta.fi/${it.pictureUrl}")
         })
 

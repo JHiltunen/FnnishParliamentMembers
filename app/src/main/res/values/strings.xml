@@ -11,4 +11,5 @@
     <string name="likeDislike_placeholder">Like/Dislike ratio</string>
     <string name="contentDescription">MemberImage</string>
     <string name="party_image">Party Image</string>
+    <string name="minister_placeholder">Minister</string>
 </resources>
